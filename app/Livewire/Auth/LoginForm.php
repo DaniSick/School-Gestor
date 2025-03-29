@@ -1,7 +1,8 @@
-namespace App\Http\Livewire\Auth;
+<?php
+
+namespace App\Livewire\Auth;
 
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
 
 class LoginForm extends Component
 {
@@ -20,7 +21,6 @@ class LoginForm extends Component
             session()->flash('error', 'Credenciales incorrectas');
         }
     }
-
     public function render()
     {
         return view('livewire.auth.login-form');
