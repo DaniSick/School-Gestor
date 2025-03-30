@@ -23,5 +23,9 @@ Route::middleware('auth')->group(function () {
         Auth::logout();
         return redirect()->route('login');
     })->name('logout');
+
+    Route::get('/empresas', \App\Livewire\EmpresaView::class)->name('empresas.view');
+    Route::get('/empresas/create', \App\Livewire\EmpresaCreate::class)->name('empresas.create');
+    Route::get('/empresas/edit/{id}', \App\Livewire\EmpresaEdit::class)->name('empresas.edit');
 });
 
