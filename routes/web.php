@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Livewire\Auth\LoginForm;
-use App\Http\Livewire\Auth\RegisterForm;
+use App\Livewire\Auth\LoginForm;
+use App\Livewire\Auth\RegisterForm;
 
 Route::get('/', function () {
     return Auth::check() ? redirect()->route('dashboard') : redirect()->route('login');
