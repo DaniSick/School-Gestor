@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +14,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Crear un rol con id = 1 si no existe
+        DB::table('roles')->insertOrIgnore([
+            'id' => 1,
+            'name' => 'Admin', // Ajusta el nombre del rol según tu lógica
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
-        User::factory()->create([
+        // Crear un usuario de prueba con todos los campos requeridos
+        User::create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'ap1' => 'Example',
+            'ap2' => 'User',
+            'email' => 'testexample@example.com',
+            'curp' => 'TESTCURP123456',
+            'sexo' => 'M',
+            'id_rol' => 1, // Asegúrate de que este id exista en la tabla roles
+            'password' => Hash::make('password'),
         ]);
     }
 }
