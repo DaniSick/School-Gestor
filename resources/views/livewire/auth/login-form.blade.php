@@ -15,7 +15,8 @@
             @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
 
             <div class="relative mt-4">
-                <x-input label="Contraseña" type="password" wire:model="password" id="login-password" />
+                <label class="block text-gray-700">Contraseña</label>
+                <input type="password" wire:model="password" id="login-password" class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring">
                 <button type="button" onclick="togglePasswordVisibility('login-password')" class="absolute inset-y-0 right-3 flex items-center text-gray-500">
                     <i id="login-password-icon"></i>
                 </button>

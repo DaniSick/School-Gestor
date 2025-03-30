@@ -16,7 +16,7 @@ Route::middleware('guest')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard'); // Vista temporal para el dashboard
+        return view('dashboard'); // Vista del dashboard
     })->name('dashboard');
 
     Route::post('/logout', function () {

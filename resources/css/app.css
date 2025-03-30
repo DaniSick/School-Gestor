@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.sidebar {
+    background: #0d1b2a; /* Fondo de la sidebar */
+    color: #ffffff; /* Texto blanco */
+    padding: 10px;
+    resize: horizontal; /* Permitir ajuste horizontal */
+    overflow-y: auto; /* Permitir desplazamiento vertical */
+    overflow-x: hidden; /* Ocultar desplazamiento horizontal */
+    min-width: 8rem; /* Ancho mínimo */
+    max-width: 20rem; /* Ancho máximo */
+    height: 100%; /* Asegurar que ocupe toda la altura del contenedor */
+}
+
+@media (min-width: 768px) {
+    .sidebar {
+        min-width: 12rem; /* Ancho mínimo en pantallas medianas */
+    }
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.sidebar ul li ul {
+    display: none;
+}
+
+.sidebar ul li:hover ul {
+    display: block;
+}
