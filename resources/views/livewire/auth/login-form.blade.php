@@ -14,7 +14,12 @@
             <x-input label="Correo" type="email" wire:model="email" />
             @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
 
-            <x-input label="Contraseña" type="password" wire:model="password" class="mt-4" />
+            <div class="relative mt-4">
+                <x-input label="Contraseña" type="password" wire:model="password" id="login-password" />
+                <button type="button" onclick="togglePasswordVisibility('login-password')" class="absolute inset-y-0 right-3 flex items-center text-gray-500">
+                    <i id="login-password-icon"></i>
+                </button>
+            </div>
             @error('password') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
 
             <div class="mt-6">

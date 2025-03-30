@@ -17,8 +17,8 @@ class RegisterForm extends Component
             'ap1' => 'required|string|max:255',
             'ap2' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'curp' => 'required|string|unique:users,curp',
-            'sexo' => 'required|string',
+            'curp' => 'nullable|string|unique:users,curp|regex:/^[A-Z0-9]{18}$/', // Hacer el campo nullable
+            'sexo' => 'required|in:1,2',
             'password' => 'required|min:8',
         ]);
 
@@ -27,14 +27,14 @@ class RegisterForm extends Component
             'ap1' => $this->ap1,
             'ap2' => $this->ap2,
             'email' => $this->email,
-            'curp' => $this->curp,
+            'curp' => $this->curp, // Puede ser null
             'sexo' => $this->sexo,
-            'id_rol' => 1, // Ajusta este valor según tu tabla de roles
+            'id_rol' => 2, // Rol predeterminado de "User"
             'password' => Hash::make($this->password),
         ]);
 
         session()->flash('success', 'Usuario registrado con éxito. Por favor, inicia sesión.');
-        return redirect()->route('login'); // Redirige al login
+        return redirect()->route('login');
     }
 
     public function render()

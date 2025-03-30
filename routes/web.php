@@ -9,9 +9,19 @@ Route::get('/', function () {
     return Auth::check() ? redirect()->route('dashboard') : redirect()->route('login');
 });
 
-Route::get('/login', LoginForm::class)->name('login');
-Route::get('/register', RegisterForm::class)->name('register');
-Route::get('/dashboard', function () {
-    return view('dashboard'); // Vista temporal para el dashboard
-})->name('dashboard')->middleware('auth');
+Route::middleware('guest')->group(function () {
+    Route::get('/login', LoginForm::class)->name('login');
+    Route::get('/register', RegisterForm::class)->name('register');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard'); // Vista temporal para el dashboard
+    })->name('dashboard');
+
+    Route::post('/logout', function () {
+        Auth::logout();
+        return redirect()->route('login');
+    })->name('logout');
+});
 

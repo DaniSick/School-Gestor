@@ -30,7 +30,7 @@
 
                 <div>
                     <label class="block text-gray-700">CURP</label>
-                    <input type="text" wire:model="curp" class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring">
+                    <input type="text" wire:model="curp" class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring" placeholder="Ingrese su CURP">
                     @error('curp') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
 
@@ -38,16 +38,19 @@
                     <label class="block text-gray-700">Sexo</label>
                     <select wire:model="sexo" class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring">
                         <option value="">Selecciona</option>
-                        <option value="M">Masculino</option>
-                        <option value="F">Femenino</option>
+                        <option value="1">Masculino</option>
+                        <option value="2">Femenino</option>
                     </select>
                     @error('sexo') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                 </div>
             </div>
 
-            <div class="mt-4">
+            <div class="relative mt-4">
                 <label class="block text-gray-700">Contraseña</label>
-                <input type="password" wire:model="password" class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring">
+                <input type="password" wire:model="password" id="register-password" class="w-full px-4 py-2 mt-2 border rounded-lg focus:outline-none focus:ring">
+                <button type="button" onclick="togglePasswordVisibility('register-password')" class="absolute inset-y-0 right-3 flex items-center text-gray-500">
+                    <i id="register-password-icon"></i>
+                </button>
                 @error('password') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
             </div>
 

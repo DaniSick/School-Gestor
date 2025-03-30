@@ -16,17 +16,17 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('ap1')->default(''); // Valor predeterminado
-            $table->string('ap2')->default(''); // Valor predeterminado
+            $table->string('ap1')->default('');
+            $table->string('ap2')->default('');
             $table->string('email')->unique();
-            $table->string('curp')->unique();
-            $table->string('sexo');
-            $table->unsignedBigInteger('id_rol');
+            $table->string('curp')->unique()->nullable(); // Hacer el campo nullable
+            $table->unsignedTinyInteger('sexo')->default(1);
+            $table->unsignedBigInteger('id_rol')->default(2); // Valor predeterminado para "User"
             $table->string('password');
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();
             $table->timestamps();
-            
+
             $table->foreign('id_rol')->references('id')->on('roles');
         });
 
