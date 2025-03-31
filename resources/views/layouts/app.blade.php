@@ -6,17 +6,14 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-gray-100 text-gray-800">
-    <div class="flex">
-        <!-- La sidebar (que maneja su propia visibilidad) -->
-        <livewire:auth.sidebar />
-        
-        <!-- Contenedor principal que se ajustará según la sidebar -->
-        <main class="flex-1 min-h-screen overflow-y-auto" :class="{'with-sidebar': $store.sidebar.open}">
+    <div x-data="{ sidebarOpen: true }">
+        <!-- La sidebar se maneja con su propio Alpine.js state -->
+        <livewire:auth.sidebar>
             @yield('content')
-        </main>
+        </livewire:auth.sidebar>
     </div>
     @livewireScripts
 </body>

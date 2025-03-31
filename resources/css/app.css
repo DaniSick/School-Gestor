@@ -37,6 +37,47 @@
     min-height: 100%;
 }
 
+/* Mejorar scrollbar para la sidebar */
+.overflow-y-auto::-webkit-scrollbar {
+    width: 4px;
+}
+
+.overflow-y-auto::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.overflow-y-auto::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+/* Estilos para los elementos del menú */
+.sidebar ul li {
+    position: relative;
+}
+
+.sidebar ul li > div {
+    transition: background-color 0.2s;
+}
+
+.sidebar ul li > ul {
+    display: none;
+}
+
+.sidebar ul li:hover > ul {
+    display: block;
+}
+
+/* Animación para el ícono de flecha */
+.sidebar .transform {
+    transition: transform 0.3s ease;
+}
+
+/* Estilo para la animación de la flecha en la sidebar */
+.transform {
+    transition: transform 0.3s ease;
+}
+
 /* Asegurando scroll en el contenido principal */
 .overflow-y-auto {
     overflow-y: auto;
@@ -46,4 +87,9 @@
 /* Ajuste para contenido principal cuando la sidebar está visible */
 body {
     overflow-x: hidden;
+}
+
+/* Asegurarse de que la sidebar tenga suficiente z-index */
+.z-40 {
+    z-index: 40;
 }
