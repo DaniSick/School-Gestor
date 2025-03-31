@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </head>
 <body class="bg-gray-100 text-gray-800 flex">
-    <livewire:auth.sidebar /> <!-- Uso correcto del componente -->
+    <livewire:auth.sidebar /> <!-- Sidebar global -->
     <div class="flex-1 p-6">
         @yield('content') <!-- Contenido dinámico -->
     </div>

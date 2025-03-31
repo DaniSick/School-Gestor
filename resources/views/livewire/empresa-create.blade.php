@@ -4,9 +4,9 @@
 
     <!-- Contenido principal -->
     <div class="flex-1 p-6">
-        <h1 class="text-2xl font-bold mb-4">Editar Empresa</h1>
+        <h1 class="text-2xl font-bold mb-4">Crear Empresa</h1>
 
-        <form wire:submit.prevent="update" class="bg-white p-6 rounded-lg shadow-md">
+        <form wire:submit.prevent="save" class="bg-white p-6 rounded-lg shadow-md">
             <div class="grid grid-cols-2 gap-4">
                 <div>
                     <label class="block text-gray-700">Nombre</label>
@@ -58,10 +58,9 @@
             </div>
 
             <div class="mt-6">
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Actualizar</button>
+                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Crear</button>
                 <a href="{{ route('empresas.view') }}" class="ml-4 text-gray-600 hover:underline">Cancelar</a>
             </div>
         </form>
     </div>
 </div>
-
