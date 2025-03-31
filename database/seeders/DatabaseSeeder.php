@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class, // Seeder de usuarios
             MenuSeeder::class,
             EmpresaSeeder::class,
+            TipoPolizaSeeder::class, // Seeder de tipos de pólizas
         ]);
     }
 }

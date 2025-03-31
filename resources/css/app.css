@@ -11,7 +11,7 @@
     overflow-x: hidden; /* Ocultar desplazamiento horizontal */
     min-width: 8rem; /* Ancho mínimo */
     max-width: 20rem; /* Ancho máximo */
-    height: 100%; /* Asegurar que ocupe toda la altura del contenedor */
+    height: 100vh; /* Asegurar que ocupe toda la altura de la pantalla */
 }
 
 @media (min-width: 768px) {

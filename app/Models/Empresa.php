@@ -27,6 +27,33 @@ class Empresa extends Model
         return $this->hasMany(Cuenta::class, 'empresa_id');
     }
 
+    // Relación con el modelo TipoPoliza
+    public function tiposPolizas()
+    {
+        return $this->hasMany(TipoPoliza::class, 'empresa_id');
+    }
+
+    // Método para cargar tipos de pólizas predeterminados
+    public function cargarTiposPolizasPredeterminados()
+    {
+        $tiposPolizasBase = [
+            ['tipo' => 'Eg', 'descripcion' => 'Egreso'],
+            ['tipo' => 'Ig', 'descripcion' => 'Ingreso'],
+            ['tipo' => 'Dr', 'descripcion' => 'Diario'],
+        ];
+
+        foreach ($tiposPolizasBase as $tipoPoliza) {
+            $this->tiposPolizas()->updateOrCreate(
+                [
+                    'tipo' => $tipoPoliza['tipo'],
+                ],
+                [
+                    'descripcion' => $tipoPoliza['descripcion'],
+                ]
+            );
+        }
+    }
+
     // Método para cargar cuentas predeterminadas
     public function cargarCuentasPredeterminadas()
     {
@@ -65,5 +92,13 @@ class Empresa extends Model
                 $this->crearCuenta($cuenta->id, $child);
             }
         }
+    }
+
+    protected static function booted()
+    {
+        // Después de crear una empresa, cargar tipos de pólizas predeterminados
+        static::created(function ($empresa) {
+            $empresa->cargarTiposPolizasPredeterminados();
+        });
     }
 }

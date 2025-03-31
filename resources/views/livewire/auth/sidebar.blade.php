@@ -1,11 +1,11 @@
-<div x-data="{ open: true }" class="relative">
+<div x-data="{ open: true }" class="flex flex-col h-screen">
     <!-- Sidebar -->
     <div :class="open ? 'block' : 'hidden'" 
-         class="sidebar bg-[#0d1b2a] text-gray-800 overflow-y-auto resize-x overflow-x-hidden md:min-w-[12rem] md:max-w-[20rem] min-w-[8rem] max-w-[20rem] h-full">
+         class="sidebar bg-[#0d1b2a] text-gray-800 overflow-y-auto resize-x overflow-x-hidden md:min-w-[12rem] md:max-w-[20rem] min-w-[8rem] max-w-[20rem] flex-shrink-0 flex-grow h-full">
         <button @click="open = false" class="bg-[#0d1b2a] text-white px-2 py-1 rounded-full focus:outline-none mb-4">
             ←
         </button>
-        <h2 class="text-xl font-bold text-white mb-4 text-center uppercase">Menú</h2> <!-- Título centrado y en mayúsculas -->
+        <h2 class="text-xl font-bold text-white mb-4 text-center uppercase">Menú</h2>
         <ul>
             @foreach ($menus as $menu)
                 <li class="mb-2">

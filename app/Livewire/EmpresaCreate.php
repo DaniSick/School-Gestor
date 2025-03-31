@@ -36,6 +36,9 @@ class EmpresaCreate extends Component
 
         // Cargar cuentas predeterminadas
         $empresa->cargarCuentasPredeterminadas();
+        
+        // Cargar tipos de pólizas predeterminados
+        $empresa->cargarTiposPolizasPredeterminados();
 
         session()->flash('success', 'Empresa registrada con éxito.');
         return redirect()->route('empresas.view');
