@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/cuentas/{empresa_id}', \App\Livewire\CuentasView::class)->name('cuentas.view');
     Route::get('/cuentas/create/{empresa_id}', \App\Livewire\CuentaCreate::class)->name('cuentas.create');
+    Route::get('/cuentas/edit/{id}', \App\Livewire\CuentaEdit::class)->name('cuentas.edit');
 
     Route::get('/polizas/{empresa_id}/{cuenta_id}', \App\Livewire\PolizasView::class)->name('polizas.view');
     Route::get('/tipos-polizas/{empresa_id}/{cuenta_id}', \App\Livewire\TiposPolizasView::class)->name('tipos-polizas.view');

@@ -1,35 +1,19 @@
 <?php
 
-namespace App\Models;
+namespace Database\Seeders;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
-class Empresa extends Model
+class CuentaSeeder extends Seeder
 {
-    use HasFactory;
-
-    protected $fillable = [
-        'nombre',
-        'razon_social',
-        'rfc',
-        'direccion',
-        'telefono',
-        'email',
-        'representante_legal',
-        'fecha_creacion',
-        'estatus',
-    ];
-
-    // Relación con el modelo Cuenta
-    public function cuentas()
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
     {
-        return $this->hasMany(Cuenta::class, 'empresa_id');
-    }
+        $empresaId = 1; // Asume que las cuentas pertenecen a la primera empresa
 
-    // Método para cargar cuentas predeterminadas
-    public function cargarCuentasPredeterminadas()
-    {
         $cuentas = [
             ['numero' => '1100', 'nombre' => 'Efectivo y Equivalentes', 'tipo' => 'acumulativa', 'children' => [
                 ['numero' => '1101', 'nombre' => 'Caja', 'tipo' => 'detalle'],
@@ -47,22 +31,25 @@ class Empresa extends Model
         ];
 
         foreach ($cuentas as $cuenta) {
-            $this->crearCuenta(null, $cuenta);
+            $this->createCuenta($empresaId, null, $cuenta);
         }
     }
 
-    private function crearCuenta($parentId, $cuentaData)
+    private function createCuenta($empresaId, $parentId, $cuentaData)
     {
-        $cuenta = $this->cuentas()->create([
+        $cuentaId = DB::table('cuentas')->insertGetId([
+            'empresa_id' => $empresaId,
             'parent_id' => $parentId,
             'numero' => $cuentaData['numero'],
             'nombre' => $cuentaData['nombre'],
             'tipo' => $cuentaData['tipo'],
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
         if (isset($cuentaData['children'])) {
             foreach ($cuentaData['children'] as $child) {
-                $this->crearCuenta($cuenta->id, $child);
+                $this->createCuenta($empresaId, $cuentaId, $child);
             }
         }
     }

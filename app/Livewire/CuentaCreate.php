@@ -7,16 +7,26 @@ use App\Models\Cuenta;
 
 class CuentaCreate extends Component
 {
-    public $empresa_id;
+    public $empresa_id, $numero, $nombre, $tipo, $parent_id, $fondo;
 
     public function save()
     {
-        $lastCuenta = Cuenta::where('empresa_id', $this->empresa_id)->latest('id')->first();
-        $nextNombre = $lastCuenta ? 'C' . str_pad($lastCuenta->id + 1, 4, '0', STR_PAD_LEFT) : 'C0001';
+        $this->validate([
+            'empresa_id' => 'required|exists:empresas,id',
+            'numero' => 'required|string|unique:cuentas,numero',
+            'nombre' => 'required|string',
+            'tipo' => 'required|in:acumulativa,detalle',
+            'parent_id' => 'nullable|exists:cuentas,id',
+            'fondo' => 'nullable|numeric|min:0',
+        ]);
 
         Cuenta::create([
             'empresa_id' => $this->empresa_id,
-            'nombre' => $nextNombre,
+            'numero' => $this->numero,
+            'nombre' => $this->nombre,
+            'tipo' => $this->tipo,
+            'parent_id' => $this->parent_id,
+            'fondo' => $this->fondo,
         ]);
 
         session()->flash('success', 'Cuenta creada con éxito.');

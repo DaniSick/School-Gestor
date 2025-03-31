@@ -22,7 +22,7 @@ class EmpresaCreate extends Component
             'fecha_creacion' => 'required|date',
         ]);
 
-        Empresa::create([
+        $empresa = Empresa::create([
             'nombre' => $this->nombre,
             'razon_social' => $this->razon_social,
             'rfc' => $this->rfc,
@@ -33,6 +33,9 @@ class EmpresaCreate extends Component
             'fecha_creacion' => $this->fecha_creacion,
             'estatus' => $this->estatus,
         ]);
+
+        // Cargar cuentas predeterminadas
+        $empresa->cargarCuentasPredeterminadas();
 
         session()->flash('success', 'Empresa registrada con éxito.');
         return redirect()->route('empresas.view');

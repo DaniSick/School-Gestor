@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\Empresa;
 
 class EmpresaSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class EmpresaSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('empresas')->insert([
+        $empresas = [
             [
                 'nombre' => 'Empresa Ejemplo S.A. de C.V.',
                 'razon_social' => 'Empresa Ejemplo Sociedad Anónima de Capital Variable',
@@ -23,8 +23,6 @@ class EmpresaSeeder extends Seeder
                 'representante_legal' => 'Juan Pérez',
                 'fecha_creacion' => '2020-01-01',
                 'estatus' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
             [
                 'nombre' => 'Tech Solutions S.A.',
@@ -36,9 +34,12 @@ class EmpresaSeeder extends Seeder
                 'representante_legal' => 'María López',
                 'fecha_creacion' => '2018-05-15',
                 'estatus' => true,
-                'created_at' => now(),
-                'updated_at' => now(),
             ],
-        ]);
+        ];
+
+        foreach ($empresas as $empresaData) {
+            $empresa = Empresa::create($empresaData);
+            $empresa->cargarCuentasPredeterminadas();
+        }
     }
 }
