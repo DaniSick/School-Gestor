@@ -2,38 +2,48 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Asegurando que la sidebar ocupe toda la altura vertical */
 .sidebar {
-    background: #0d1b2a; /* Fondo de la sidebar */
-    color: #ffffff; /* Texto blanco */
-    padding: 10px;
-    resize: horizontal; /* Permitir ajuste horizontal */
-    overflow-y: auto; /* Permitir desplazamiento vertical */
-    overflow-x: hidden; /* Ocultar desplazamiento horizontal */
-    min-width: 8rem; /* Ancho mínimo */
-    max-width: 20rem; /* Ancho máximo */
-    height: 100vh; /* Asegurar que ocupe toda la altura de la pantalla */
+    height: 100vh;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-@media (min-width: 768px) {
-    .sidebar {
-        min-width: 12rem; /* Ancho mínimo en pantallas medianas */
-    }
+.sidebar > div {
+    flex-grow: 1;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
 }
 
-.sidebar ul {
-    list-style: none;
-    padding: 0;
+/* Estilos para la scrollbar en navegadores WebKit (Chrome, Safari, Edge) */
+.sidebar > div::-webkit-scrollbar {
+    width: 4px;
 }
 
-.sidebar ul li {
-    padding: 5px;
-    cursor: pointer;
+.sidebar > div::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-.sidebar ul li ul {
-    display: none;
+.sidebar > div::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
 }
 
-.sidebar ul li:hover ul {
-    display: block;
+/* Asegurando que los contenedores principales ocupen toda la altura */
+.h-screen {
+    height: 100vh;
+    min-height: 100%;
+}
+
+/* Asegurando scroll en el contenido principal */
+.overflow-y-auto {
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+/* Ajuste para contenido principal cuando la sidebar está visible */
+body {
+    overflow-x: hidden;
 }

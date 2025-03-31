@@ -16,8 +16,9 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    // Dashboard
     Route::get('/dashboard', function () {
-        return view('dashboard'); // Vista del dashboard
+        return view('dashboard');
     })->name('dashboard');
 
     Route::post('/logout', function () {
@@ -35,15 +36,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/cuentas/edit/{id}', \App\Livewire\CuentaEdit::class)->name('cuentas.edit');
     Route::get('/cuentas/{empresa_id}', \App\Livewire\CuentasView::class)->name('cuentas.view');
 
-    // Rutas de Pólizas
-    Route::get('/polizas/{empresa_id}/{cuenta_id}', \App\Livewire\PolizasView::class)->name('polizas.view');
-    
-    // Rutas de Tipos de Pólizas - Corrige el orden para evitar conflictos
+    // Rutas de Tipos de Pólizas
     Route::get('/tipos-polizas/create/{empresa_id}', \App\Livewire\TipoPolizaCreate::class)->name('tipos-polizas.create');
     Route::get('/tipos-polizas/edit/{id}', \App\Livewire\TipoPolizaEdit::class)->name('tipos-polizas.edit');
     Route::get('/tipos-polizas/{empresa_id}', \App\Livewire\TiposPolizasView::class)->name('tipos-polizas.view');
+    
+    // Rutas de Contenedores de Pólizas
+    Route::get('/contenedores-polizas/{empresa_id}', \App\Livewire\ContenedoresPolizasView::class)->name('contenedores-polizas.view');
+    Route::get('/contenedores-polizas/create/{empresa_id}', \App\Livewire\ContenedorPolizaCreate::class)->name('contenedores-polizas.create');
+    Route::get('/contenedores-polizas/edit/{id}', \App\Livewire\ContenedorPolizaEdit::class)->name('contenedores-polizas.edit');
+    Route::get('/contenedores-polizas/details/{id}', \App\Livewire\ContenedorPolizaDetails::class)->name('contenedores-polizas.view-details');
+    
+    // Rutas de Pólizas (original)
+    Route::get('/polizas/{empresa_id}/{cuenta_id}', \App\Livewire\PolizasView::class)->name('polizas.view');
 });
 
+// Ruta para verificar tabla (utilidad de desarrollo)
 Route::get('/check-table', function () {
     if (Schema::hasTable('tipos_polizas')) {
         return 'La tabla tipos_polizas existe.';

@@ -20,7 +20,8 @@ class CreateCuentasTable extends Migration
             $table->string('numero'); // Número de la cuenta
             $table->string('nombre'); // Nombre de la cuenta
             $table->enum('tipo', ['acumulativa', 'detalle']); // Tipo de cuenta
-            $table->decimal('fondo', 15, 2)->nullable(); // Campo para almacenar dinero
+            $table->decimal('haber', 15, 2)->default(0); // Total haber (créditos)
+            $table->decimal('cargo', 15, 2)->default(0); // Total cargo (débitos)
             $table->timestamps();
 
             $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('cascade');
