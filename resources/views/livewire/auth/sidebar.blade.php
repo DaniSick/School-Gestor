@@ -41,7 +41,10 @@
                                 class="ml-4">
                                 @foreach ($menu->children as $child)
                                     <li class="mt-1">
-                                        <a href="{{ $child->ruta }}" class="text-blue-400 hover:text-blue-300 block py-1 px-2 rounded hover:bg-gray-700 transition duration-150">{{ $child->nombre }}</a>
+                                        <a href="{{ str_replace('{empresa_id}', \App\Models\Empresa::first()?->id ?? '1', $child->ruta) }}" 
+                                           class="text-blue-400 hover:text-blue-300 block py-1 px-2 rounded hover:bg-gray-700 transition duration-150">
+                                            {{ $child->nombre }}
+                                        </a>
                                     </li>
                                 @endforeach
                             </ul>
@@ -49,6 +52,20 @@
                     </li>
                 @endforeach
             </ul>
+            
+            <div class="mt-auto">
+                <a href="{{ route('logout') }}" 
+                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                   class="text-red-400 hover:text-red-300 flex items-center p-2 rounded hover:bg-gray-700 transition duration-150">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 01-3-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    Cerrar Sesión
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                    @csrf
+                </form>
+            </div>
         </div>
     </div>
 

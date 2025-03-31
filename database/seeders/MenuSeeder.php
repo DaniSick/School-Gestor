@@ -19,10 +19,12 @@ class MenuSeeder extends Seeder
             ['id' => 4, 'nombre' => 'Empresas', 'parent_id' => 3, 'ruta' => '/empresas'],
             ['id' => 5, 'nombre' => 'Tipos de Pólizas', 'parent_id' => 2, 'ruta' => '/tipos-polizas/{empresa_id}'],
             ['id' => 6, 'nombre' => 'Contenedores de Pólizas', 'parent_id' => 2, 'ruta' => '/contenedores-polizas/{empresa_id}'],
-            ['id' => 7, 'nombre' => 'Reportes', 'parent_id' => null, 'ruta' => '/reportes'],
+            ['id' => 7, 'nombre' => 'Reportes', 'parent_id' => null, 'ruta' => null],
             ['id' => 8, 'nombre' => 'Configuración', 'parent_id' => null, 'ruta' => '/configuracion'],
             ['id' => 9, 'nombre' => 'Cuentas', 'parent_id' => 1, 'ruta' => '/cuentas/{empresa_id}'],
             ['id' => 10, 'nombre' => 'Inicio', 'parent_id' => 8, 'ruta' => '/dashboard'],
+            ['id' => 11, 'nombre' => 'Balanza General', 'parent_id' => 7, 'ruta' => '/reportes/{empresa_id}'],
+            ['id' => 12, 'nombre' => 'Libro Diario', 'parent_id' => 7, 'ruta' => '/reportes/{empresa_id}'],
         ]);
     }
 }

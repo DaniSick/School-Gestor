@@ -8,15 +8,17 @@ class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
+     *
+     * @return void
      */
     public function run(): void
     {
         $this->call([
-            RoleSeeder::class, // Seeder de roles
-            UserSeeder::class, // Seeder de usuarios
-            MenuSeeder::class,
+            RoleSeeder::class,
+            UserSeeder::class,
+            MenuSeeder::class,  // Asegurarse de que se incluya MenuSeeder
             EmpresaSeeder::class,
-            TipoPolizaSeeder::class, // Seeder de tipos de pólizas
+            TipoPolizaSeeder::class,
         ]);
     }
 }

@@ -49,6 +49,11 @@ Route::middleware('auth')->group(function () {
     
     // Rutas de Pólizas (original)
     Route::get('/polizas/{empresa_id}/{cuenta_id}', \App\Livewire\PolizasView::class)->name('polizas.view');
+    
+    // Rutas de Reportes
+    Route::get('/reportes/{empresa_id?}', \App\Livewire\ReportesView::class)->name('reportes.view');
+    Route::get('/reportes/balanza/{empresa_id}/{fecha_inicio}/{fecha_fin}/{mostrar_sin_movimientos?}', \App\Livewire\ReporteBalanza::class)->name('reportes.balanza');
+    Route::get('/reportes/diario/{empresa_id}/{fecha_inicio}/{fecha_fin}', \App\Livewire\ReporteDiario::class)->name('reportes.diario');
 });
 
 // Ruta para verificar tabla (utilidad de desarrollo)
