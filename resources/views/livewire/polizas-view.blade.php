@@ -19,23 +19,5 @@
                 Crear
             </a>
         </div>
-
-        <div class="bg-gray-200 p-4 mt-4">
-            @if ($cuentas->isNotEmpty())
-                
-            @else
-                <h1 class="text-2xl font-bold">Cuentas</h1>
-            @endif
-        </div>
-
-        
-
-        @if (session()->has('success'))
-            <div class="bg-green-100 text-green-800 p-2 rounded mb-4">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        
     </div>
 </div>
