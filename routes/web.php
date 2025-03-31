@@ -27,5 +27,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/empresas', \App\Livewire\EmpresaView::class)->name('empresas.view');
     Route::get('/empresas/create', \App\Livewire\EmpresaCreate::class)->name('empresas.create');
     Route::get('/empresas/edit/{id}', \App\Livewire\EmpresaEdit::class)->name('empresas.edit');
+
+    Route::get('/cuentas/{empresa_id}', \App\Livewire\CuentasView::class)->name('cuentas.view');
+    Route::get('/cuentas/create/{empresa_id}', \App\Livewire\CuentaCreate::class)->name('cuentas.create');
 });
 

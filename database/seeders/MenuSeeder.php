@@ -21,6 +21,10 @@ class MenuSeeder extends Seeder
             ['id' => 6, 'nombre' => 'Tipos Polizas', 'parent_id' => 2, 'ruta' => '/tipos-polizas'],
             ['id' => 7, 'nombre' => 'Reportes', 'parent_id' => null, 'ruta' => '/reportes'],
             ['id' => 8, 'nombre' => 'Configuración', 'parent_id' => null, 'ruta' => '/configuracion'],
+            ['id' => 9, 'nombre' => 'Configuración', 'parent_id' => 1, 'ruta' => '/cuentas/{empresa_id}'],
+            ['id' => 10, 'nombre' => 'Inicio', 'parent_id' => 8, 'ruta' => '/dashboard'],
+
+
         ]);
     }
 }

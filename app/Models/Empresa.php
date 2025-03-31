@@ -20,4 +20,10 @@ class Empresa extends Model
         'fecha_creacion',
         'estatus',
     ];
+
+    // Relación con el modelo Cuenta
+    public function cuentas()
+    {
+        return $this->hasMany(Cuenta::class, 'empresa_id');
+    }
 }
